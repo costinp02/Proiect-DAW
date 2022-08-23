@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,18 @@ namespace Proiect.Entities
         public DbSet<GameStore> GameStores { get; set; }
 
         public ProiectContext(DbContextOptions<ProiectContext> options) : base(options) { }
+
+        public ProiectContext()
+        {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                //.UseLazyLoadingProxies()
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Initial Catalog=proiect;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true");
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

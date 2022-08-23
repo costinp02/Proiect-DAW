@@ -10,6 +10,8 @@ namespace Proiect.Entities
         public string Id { get; set; }
         public string Name { get; set; }
 
+        public float Price { get; set; }
+
         public string PublisherId { get; set; }
 
         public virtual Publisher Publisher { get; set; }
