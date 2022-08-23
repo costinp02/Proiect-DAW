@@ -1,7 +1,9 @@
+using Proiect.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +34,8 @@ namespace Proiect
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proiect", Version = "v1" });
             });
+
+            services.AddDbContext<ProiectContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Initial Catalog=proiect;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
