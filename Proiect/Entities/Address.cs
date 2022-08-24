@@ -12,6 +12,8 @@ namespace Proiect.Entities
         public string Country { get; set; }
         public string Street { get; set; }
 
+        public string StoreId { get; set; }
+
         public virtual Store Store { get; set; }
     }
 }

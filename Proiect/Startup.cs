@@ -1,4 +1,6 @@
 using Proiect.Entities;
+using Proiect.Managers;
+using Proiect.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +42,10 @@ namespace Proiect
             services.AddControllersWithViews()
                     .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddTransient<IStoreRepository, StoreRepository>();
+
+            services.AddTransient<IStoreManager, StoreManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

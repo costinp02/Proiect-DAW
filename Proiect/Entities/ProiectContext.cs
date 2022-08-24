@@ -35,7 +35,7 @@ namespace Proiect.Entities
             builder.Entity<Store>()
                 .HasOne(a => a.Address)
                 .WithOne(aa => aa.Store)
-                .HasForeignKey<Address>(a => a.Id);
+                .HasForeignKey<Address>(a => a.StoreId);
 
             //One to many
             builder.Entity<Publisher>()

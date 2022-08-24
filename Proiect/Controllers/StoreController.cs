@@ -1,4 +1,5 @@
 ﻿using Proiect.Entities;
+using Proiect.Managers;
 using Proiect.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,35 +15,51 @@ namespace Proiect.Controllers
     [ApiController]
     public class StoreController : ControllerBase
     {
+        private readonly IStoreManager manager;
+
+        public StoreController(IStoreManager storeManager)
+        {
+            this.manager = storeManager;
+        }
         [HttpGet]
         public async Task<IActionResult> GetStores()
         {
-            var db = new ProiectContext();
+            //var db = new ProiectContext();
 
-            var stores = db.Stores.ToList();
+            //var stores = db.Stores.ToList();
+
+            var stores = manager.GetStores();
 
             return Ok(stores);
 
 
+        }
 
-            /* select * from Authors*/
+        [HttpGet("stores-with-details")]
+        public async Task<IActionResult> JoinEager()
+        {
+            var authorsWithBooks = manager.GetStoresWithDetails();
+
+            return Ok(authorsWithBooks);
         }
 
         [HttpPost("withObj")]
         public async Task<IActionResult> Create([FromBody] StoreModel storeCreationModel)
         {
-            var db = new ProiectContext();
+            //var db = new ProiectContext();
 
-            var newStore = new Store
-            {
-                Id = storeCreationModel.Id,
-                Name = storeCreationModel.Name
-            };
+            //var newStore = new Store
+            //{
+            //    Id = storeCreationModel.Id,
+            //    Name = storeCreationModel.Name
+            //};
 
-            // db.Add(newAuthor);
-            await db.Stores.AddAsync(newStore);
+            //// db.Add(newAuthor);
+            //await db.Stores.AddAsync(newStore);
 
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+
+            manager.Create(storeCreationModel);
 
             return Ok();
         }
@@ -50,15 +67,25 @@ namespace Proiect.Controllers
         [HttpPut("withObj")]
         public async Task<IActionResult> Update([FromBody] StoreModel storeCreationModel)
         {
-            var db = new ProiectContext();
+            //var db = new ProiectContext();
 
-            var store = db.Stores.FirstOrDefault(x => x.Id == storeCreationModel.Id);
+            //var store = db.Stores.FirstOrDefault(x => x.Id == storeCreationModel.Id);
 
-            store.Name = storeCreationModel.Name;
+            //store.Name = storeCreationModel.Name;
 
-            db.Stores.Update(store);
+            //db.Stores.Update(store);
 
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
+
+            manager.Update(storeCreationModel);
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] string id)
+        {
+            manager.Delete(id);
 
             return Ok();
         }
