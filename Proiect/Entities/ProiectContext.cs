@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace Proiect.Entities
 {
-    public class ProiectContext : DbContext
+    public class ProiectContext : IdentityDbContext<User, Role, string, IdentityUserClaim<string>,
+        UserRole, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Game> Games { get; set; }
