@@ -24,9 +24,6 @@ namespace Proiect.Controllers
         [HttpGet]
         public async Task<IActionResult> GetStores()
         {
-            //var db = new ProiectContext();
-
-            //var stores = db.Stores.ToList();
 
             var stores = manager.GetStores();
 
@@ -38,26 +35,15 @@ namespace Proiect.Controllers
         [HttpGet("stores-with-details")]
         public async Task<IActionResult> JoinEager()
         {
-            var authorsWithBooks = manager.GetStoresWithDetails();
+            var storesWithDetails = manager.GetStoresWithDetails();
 
-            return Ok(authorsWithBooks);
+            return Ok(storesWithDetails);
         }
 
         [HttpPost("withObj")]
         public async Task<IActionResult> Create([FromBody] StoreModel storeCreationModel)
         {
-            //var db = new ProiectContext();
 
-            //var newStore = new Store
-            //{
-            //    Id = storeCreationModel.Id,
-            //    Name = storeCreationModel.Name
-            //};
-
-            //// db.Add(newAuthor);
-            //await db.Stores.AddAsync(newStore);
-
-            //await db.SaveChangesAsync();
 
             manager.Create(storeCreationModel);
 
@@ -67,15 +53,6 @@ namespace Proiect.Controllers
         [HttpPut("withObj")]
         public async Task<IActionResult> Update([FromBody] StoreModel storeCreationModel)
         {
-            //var db = new ProiectContext();
-
-            //var store = db.Stores.FirstOrDefault(x => x.Id == storeCreationModel.Id);
-
-            //store.Name = storeCreationModel.Name;
-
-            //db.Stores.Update(store);
-
-            //await db.SaveChangesAsync();
 
             manager.Update(storeCreationModel);
 

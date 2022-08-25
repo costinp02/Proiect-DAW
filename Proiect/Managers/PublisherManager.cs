@@ -69,11 +69,11 @@ namespace Proiect.Managers
             return publisherRepository.GetPublisherIQueryable().ToList();
         }
 
-        //public List<Publisher> GetStoresWithDetails()
-        //{
-        //    var storesWithGames = publisherRepository.GetStoresWithDetails();
+        public List<Publisher> GetPublishersWithGames()
+        {
+            var publisherWithGames = publisherRepository.GetPublisherWithGames();
 
-        //    return storesWithGames.ToList();
-        //}
+            return publisherWithGames.ToList();
+        }
     }
 }

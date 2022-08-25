@@ -10,7 +10,7 @@ namespace Proiect.Managers
     public interface IPublisherManager
     {
         List<Publisher> GetPublishers();
-        //List<Publisher> GetPublishersWithDetails();
+        List<Publisher> GetPublishersWithGames();
 
         Publisher GetPublisherById(string id);
         void Create(string name);

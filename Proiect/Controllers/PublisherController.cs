@@ -30,6 +30,14 @@ namespace Proiect.Controllers
             return Ok(publishers);
         }
 
+        [HttpGet("publishers-with-games")]
+        public async Task<IActionResult> JoinEager()
+        {
+            var publisherWithGames = manager.GetPublishersWithGames();
+
+            return Ok(publisherWithGames);
+        }
+
         [HttpPost("withObj")]
         public async Task<IActionResult> Create([FromBody] PublisherModel publisherModel)
         {

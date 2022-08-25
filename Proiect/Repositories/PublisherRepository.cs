@@ -23,6 +23,14 @@ namespace Proiect.Repositories
             return publishers;
         }
 
+        public IQueryable<Publisher> GetPublisherWithGames()
+        {
+            var publishers = GetPublisherIQueryable().Include(x => x.Games);
+
+
+            return publishers;
+        }
+
         public void Create(Publisher publisher)
         {
             db.Publishers.Add(publisher);

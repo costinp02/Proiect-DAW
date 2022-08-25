@@ -10,7 +10,7 @@ namespace Proiect.Repositories
     {
         IQueryable<Publisher> GetPublisherIQueryable();
 
-        //IQueryable<Publisher> GetStoresWithDetails();
+        IQueryable<Publisher> GetPublisherWithGames();
 
         void Create(Publisher publisher);
         void Update(Publisher publisher);
