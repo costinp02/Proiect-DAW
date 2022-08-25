@@ -79,7 +79,9 @@ namespace Proiect
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddTransient<IStoreRepository, StoreRepository>();
+            services.AddTransient<IPublisherRepository, PublisherRepository>();
 
+            services.AddTransient<IPublisherManager, PublisherManager>();
             services.AddTransient<IStoreManager, StoreManager>();
             services.AddTransient<IAuthenticationManager, AuthenticationManager>();
             services.AddTransient<ITokenManager, TokenManager>();
