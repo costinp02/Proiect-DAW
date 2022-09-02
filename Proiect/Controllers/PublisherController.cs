@@ -22,7 +22,7 @@ namespace Proiect.Controllers
             this.manager = publisherManager;
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> GetPublishers()
         {
             var publishers = manager.GetPublishers();
@@ -36,6 +36,14 @@ namespace Proiect.Controllers
             var publisherWithGames = manager.GetPublishersWithGames();
 
             return Ok(publisherWithGames);
+        }
+
+        [HttpGet("byId/{id}")]
+        public async Task<IActionResult> GetById([FromRoute] string id)
+        {
+            var publisher = manager.GetPublisherById(id);
+
+            return Ok(publisher);
         }
 
         [HttpPost("withObj")]

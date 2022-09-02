@@ -56,13 +56,6 @@ namespace Proiect.Managers
             publisherRepository.Delete(publisher);
         }
 
-        public Publisher GetPublisherById(string id)
-        {
-            var publisher = publisherRepository.GetPublisherIQueryable()
-                .FirstOrDefault(x => x.Id == id);
-
-            return publisher;
-        }
 
         public List<Publisher> GetPublishers()
         {
@@ -75,5 +68,14 @@ namespace Proiect.Managers
 
             return publisherWithGames.ToList();
         }
+
+        public Publisher GetPublisherById(string id)
+        {
+            var publisher = publisherRepository.GetPublisherWithGames()
+                .FirstOrDefault(x => x.Id.Equals(id));
+
+            return publisher;
+        }
+
     }
 }
